@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   String   @id @default(uuid())
+  name                 String
+  email                String   @unique
+  password             String
+  bio                  String?
+  jobTitle             String?
+  avatarUrl            String?
+  theme                String   @default("system")
+  notificationsEnabled Boolean  @default(true)
+  createdAt            DateTime @default(now())
+
+  boards       Board[]      @relation("OwnerBoards")
+  memberships  BoardMember[]
+  assignedTasks Task[]
+  comments      Comment[]
+
+  @@index([email])
+}
+
+model Board {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  createdAt   DateTime @default(now())
+
+  ownerId String
+  owner   User @relation("OwnerBoards", fields: [ownerId], references: [id], onDelete: Restrict)
+
+  columns Column[]
+  members BoardMember[]
+
+  @@index([ownerId])
+}
+
+model BoardMember {
+  id      String @id @default(uuid())
+  role    Role
+
+  userId  String
+  boardId String
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+  @@unique([boardId, userId])
+  @@index([userId])
+  @@index([boardId])
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+model Column {
+  id      String @id @default(uuid())
+  title   String
+  order   Int
+
+  boardId String
+  board   Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+  tasks Task[]
+
+  @@unique([boardId, order])
+  @@index([boardId])
+}
+
+model Task {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  priority    String?
+  dueDate     DateTime?
+  order       Int
+
+  columnId String
+  column   Column @relation(fields: [columnId], references: [id], onDelete: Cascade)
+
+  assigneeId String?
+  assignee   User?   @relation(fields: [assigneeId], references: [id], onDelete: SetNull)
+
+  comments Comment[]
+
+  @@index([columnId])
+  @@index([assigneeId])
+  @@unique([columnId, order])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+
+  taskId String
+  task   Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  authorId String
+  author   User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+  @@index([authorId])
+}

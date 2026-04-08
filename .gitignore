@@ -1,0 +1,13 @@
+node_modules
+Frontend/dist
+Frontend/src/node_modules
+# Keep environment variables out of version control
+.env
+.env.*
+backend.log
+backend.err.log
+frontend.log
+frontend.err.log
+.DS_Store
+
+/generated/prisma

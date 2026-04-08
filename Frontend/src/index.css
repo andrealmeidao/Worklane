@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply min-h-screen bg-slate-100 text-slate-900 antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(15, 23, 42, 0.06), transparent 30%),
+      linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+    transition:
+      background-image 220ms ease,
+      background-color 220ms ease,
+      color 220ms ease;
+  }
+
+  :root[data-theme="dark"] body {
+    @apply bg-slate-950 text-slate-100;
+    background-image:
+      radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 30%),
+      linear-gradient(180deg, #020617 0%, #0f172a 100%);
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.7) transparent;
+  }
+
+  html.dark * {
+    scrollbar-color: rgba(71, 85, 105, 0.8) transparent;
+  }
+}
+
+@layer utilities {
+  .animate-page-enter {
+    animation: page-enter 220ms ease-out;
+  }
+
+  .animate-modal-in {
+    animation: modal-in 180ms ease-out;
+  }
+
+  .animate-task-in {
+    animation: task-in 220ms ease-out;
+  }
+
+  .animate-task-out {
+    animation: task-out 180ms ease-in forwards;
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes task-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes task-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.97) translateY(-6px);
+  }
+}
