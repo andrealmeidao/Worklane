@@ -24,19 +24,6 @@ O Worklane simula um fluxo de trabalho usado diariamente por equipes:
 - perfil e configurações persistidas
 - dark mode e microinterações no frontend
 
-## Preview
-
-Screenshots podem ser adicionadas em `docs/screenshots/` para enriquecer a apresentação do projeto no GitHub.
-
-Sugestão de imagens:
-
-- `docs/screenshots/login.png`
-- `docs/screenshots/dashboard.png`
-- `docs/screenshots/board.png`
-- `docs/screenshots/dark-mode.png`
-
-
-
 
 ### Frontend
 
