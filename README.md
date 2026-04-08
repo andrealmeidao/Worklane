@@ -35,13 +35,8 @@ Sugestão de imagens:
 - `docs/screenshots/board.png`
 - `docs/screenshots/dark-mode.png`
 
-Exemplo de uso no README:
 
-```md
-![Dashboard](docs/screenshots/dashboard.png)
-```
 
-## Stack
 
 ### Frontend
 
