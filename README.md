@@ -1,12 +1,19 @@
 # Worklane
 
+[![Status](https://img.shields.io/badge/status-active-0f172a)](https://github.com/andrealmeidao/Worklane)
+[![Frontend](https://img.shields.io/badge/frontend-React%20%2B%20Vite-38bdf8)](https://react.dev/)
+[![Backend](https://img.shields.io/badge/backend-Node%20%2B%20Express-16a34a)](https://nodejs.org/)
+[![Database](https://img.shields.io/badge/database-PostgreSQL%20%2B%20Prisma-6366f1)](https://www.prisma.io/)
+[![UI](https://img.shields.io/badge/ui-Tailwind%20CSS-0ea5e9)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/license-MIT-f59e0b)](./LICENSE)
+
 Kanban SaaS com foco em gestão visual de trabalho, colaboração em equipe e experiência moderna de produto.
 
-O projeto foi construído como uma aplicação fullstack completa, com autenticação JWT, boards colaborativos, tarefas com drag and drop, comentários, membros com RBAC, perfil, configurações persistidas e refinamento de UI/UX para uma experiência mais próxima de um produto real.
+O Worklane foi construído como uma aplicação fullstack completa, com autenticação JWT, boards colaborativos, tarefas com drag and drop, comentários, membros com RBAC, perfil, configurações persistidas e refinamento de UI/UX para uma experiência mais próxima de um produto real.
 
 ## Visão geral
 
-O Worklane foi pensado para simular um fluxo de trabalho usado diariamente por equipes:
+O Worklane simula um fluxo de trabalho usado diariamente por equipes:
 
 - criação e gestão de boards
 - colunas com ordem persistida
@@ -16,6 +23,23 @@ O Worklane foi pensado para simular um fluxo de trabalho usado diariamente por e
 - membros por board com permissões
 - perfil e configurações persistidas
 - dark mode e microinterações no frontend
+
+## Preview
+
+Screenshots podem ser adicionadas em `docs/screenshots/` para enriquecer a apresentação do projeto no GitHub.
+
+Sugestão de imagens:
+
+- `docs/screenshots/login.png`
+- `docs/screenshots/dashboard.png`
+- `docs/screenshots/board.png`
+- `docs/screenshots/dark-mode.png`
+
+Exemplo de uso no README:
+
+```md
+![Dashboard](docs/screenshots/dashboard.png)
+```
 
 ## Stack
 
@@ -202,6 +226,42 @@ Rotas mais importantes:
 - `POST /api/comments/task/:taskId`
 - `GET /api/members/board/:boardId`
 
+## Deploy
+
+Uma estrutura simples e prática para deploy deste projeto:
+
+### Frontend
+
+- Vercel
+- Netlify
+
+Variável recomendada:
+
+```env
+VITE_API_URL=https://seu-backend.onrender.com
+```
+
+### Backend
+
+- Render
+- Railway
+- Fly.io
+
+Variáveis recomendadas:
+
+```env
+DATABASE_URL=postgresql://...
+JWT_SECRET=sua_chave_jwt_forte
+PORT=3000
+```
+
+### Banco de dados
+
+- Neon
+- Supabase Postgres
+- Render Postgres
+- PostgreSQL próprio
+
 ## Estado atual do projeto
 
 Hoje o Worklane já está em um nível sólido para portfólio:
@@ -212,15 +272,19 @@ Hoje o Worklane já está em um nível sólido para portfólio:
 - persistência real de perfil e configurações
 - board com comportamento próximo de um Kanban moderno
 
-## Próximos passos recomendados
+## Roadmap sugerido
 
 - testes E2E do fluxo principal
 - activity log por board e tarefa
 - notificações reais
 - upload de avatar
-- labels/tags por tarefa
-- melhoria adicional do dark mode em todas as telas
+- labels e tags por tarefa
+- refinamento extra do dark mode em todas as telas
+
+## Contribuindo
+
+Se quiser colaborar, veja as orientações em [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## Licença
 
-Este projeto está disponível para fins de estudo, portfólio e evolução pessoal.
+Este projeto está licenciado sob a [MIT License](./LICENSE).
