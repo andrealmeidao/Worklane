@@ -263,10 +263,6 @@ Hoje o Worklane já está em um nível sólido para portfólio:
 - labels e tags por tarefa
 - refinamento extra do dark mode em todas as telas
 
-## Contribuindo
-
-Se quiser colaborar, veja as orientações em [CONTRIBUTING.md](./CONTRIBUTING.md).
-
 ## Licença
 
 Este projeto está licenciado sob a [MIT License](./LICENSE).
