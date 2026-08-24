@@ -1,268 +1,219 @@
 # Worklane
 
-[![Status](https://img.shields.io/badge/status-active-0f172a)](https://github.com/andrealmeidao/Worklane)
-[![Frontend](https://img.shields.io/badge/frontend-React%20%2B%20Vite-38bdf8)](https://react.dev/)
-[![Backend](https://img.shields.io/badge/backend-Node%20%2B%20Express-16a34a)](https://nodejs.org/)
-[![Database](https://img.shields.io/badge/database-PostgreSQL%20%2B%20Prisma-6366f1)](https://www.prisma.io/)
-[![UI](https://img.shields.io/badge/ui-Tailwind%20CSS-0ea5e9)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/license-MIT-f59e0b)](./LICENSE)
+Aplicação fullstack de gestão visual de trabalho, inspirada em ferramentas Kanban. O Worklane permite organizar projetos em boards, acompanhar tarefas por etapas e colaborar com outras pessoas em um único espaço de trabalho.
 
-Kanban SaaS com foco em gestão visual de trabalho, colaboração em equipe e experiência moderna de produto.
+## Demo
 
-O Worklane foi construído como uma aplicação fullstack completa, com autenticação JWT, boards colaborativos, tarefas com drag and drop, comentários, membros com RBAC, perfil, configurações persistidas e refinamento de UI/UX para uma experiência mais próxima de um produto real.
+**Acesse a aplicação:** [worklane-one.vercel.app](https://worklane-one.vercel.app/)
 
-## Visão geral
+## Funcionalidades
 
-O Worklane simula um fluxo de trabalho usado diariamente por equipes:
+- Cadastro, login e autenticação com JWT
+- Sessão persistida e proteção de rotas
+- Criação, edição e exclusão de boards
+- Colunas ordenáveis com persistência
+- Tarefas com prioridade, prazo e responsável
+- Drag and drop de tarefas e colunas
+- Comentários em tarefas
+- Membros de board com permissões `OWNER`, `ADMIN` e `MEMBER`
+- Perfil com nome, bio, cargo e avatar
+- Preferências de tema e notificações
+- Dashboard com métricas e últimos boards acessados
+- Interface responsiva com dark mode
 
-- criação e gestão de boards
-- colunas com ordem persistida
-- tarefas com prioridade, prazo e responsável
-- drag and drop de tarefas e colunas
-- comentários por tarefa
-- membros por board com permissões
-- perfil e configurações persistidas
-- dark mode e microinterações no frontend
-
+## Tecnologias
 
 ### Frontend
 
-- React
+- React 18
 - Vite
 - Tailwind CSS
-- dnd-kit
-- Axios
 - React Router
+- Axios
+- dnd-kit
 - React Hot Toast
 
-### Backend
+### Backend e dados
 
 - Node.js
 - Express
-- Prisma
 - PostgreSQL
+- Prisma ORM
 - JWT
 - bcrypt
-
-## Principais funcionalidades
-
-### Autenticação e conta
-
-- login e registro
-- sessão persistida
-- proteção de rotas com JWT
-- perfil com `nome`, `bio`, `cargo` e `avatarUrl`
-- configurações com `tema` e `notificações`
-
-### Boards e colaboração
-
-- criar, editar e excluir boards
-- sistema de membros por board
-- RBAC com `OWNER`, `ADMIN` e `MEMBER`
-- apenas owner pode excluir board
-- admins e owners gerenciam membros
-
-### Kanban
-
-- criar, editar e excluir colunas
-- exclusão de coluna apenas quando estiver vazia
-- reordenação de colunas com persistência
-- criar, editar e excluir tarefas
-- drag and drop de tarefas entre colunas
-- prioridade, prazo e responsável
-- filtros por responsável, prioridade e prazo
-
-### Experiência de produto
-
-- dashboard com métricas e cards de boards
-- board horizontal com scroll
-- microinterações de hover e drag
-- modais com animação
-- empty states e loading states
-- dark mode estruturado
-- lembrança do último board acessado
 
 ## Estrutura do projeto
 
 ```text
 Worklane/
-├─ Backend/
-│  └─ src/
-│     ├─ controllers/
-│     ├─ middlewares/
-│     ├─ routes/
-│     ├─ services/
-│     └─ utils/
-├─ Frontend/
-│  └─ src/
-│     ├─ components/
-│     ├─ context/
-│     ├─ lib/
-│     └─ pages/
-├─ prisma/
-│  ├─ migrations/
-│  └─ schema.prisma
-└─ prisma.config.ts
+├── Backend/
+│   └── src/
+│       ├── controllers/
+│       ├── middlewares/
+│       ├── routes/
+│       ├── services/
+│       └── utils/
+├── Frontend/
+│   └── src/
+│       ├── components/
+│       ├── context/
+│       ├── lib/
+│       └── pages/
+├── prisma/
+│   ├── migrations/
+│   └── schema.prisma
+├── prisma.config.ts
+└── package.json
 ```
 
 ## Requisitos
 
-- Node.js 18+
+- Node.js 18 ou superior
 - PostgreSQL
 - npm
 
-## Configuração local
+## Instalação local
 
-### 1. Clone o repositório
+Clone o repositório e instale as dependências:
 
 ```bash
 git clone https://github.com/andrealmeidao/Worklane.git
 cd Worklane
-```
-
-### 2. Instale as dependências
-
-```bash
 npm install
 npm --prefix Frontend install
 ```
 
-### 3. Configure as variáveis de ambiente
-
-Crie um arquivo `.env` na raiz com algo neste formato:
+Crie um arquivo `.env` na raiz do projeto:
 
 ```env
-DATABASE_URL="postgresql://usuario:senha@localhost:5432/taskflow"
-JWT_SECRET="sua_chave_jwt_forte"
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/Worklane"
+JWT_SECRET="crie_uma_chave_secreta_forte"
 PORT=3000
-VITE_API_URL="http://127.0.0.1:3000"
 ```
 
-### 4. Aplique as migrations e gere o client do Prisma
+Sincronize o schema e gere o Prisma Client:
 
 ```bash
-npx prisma migrate deploy
+npx prisma db push
 npx prisma generate
 ```
 
-### 5. Rode o backend
+Inicie o backend:
 
 ```bash
 npm run dev:backend
 ```
 
-### 6. Rode o frontend
-
-Em outro terminal:
+Em outro terminal, inicie o frontend:
 
 ```bash
-npm --prefix Frontend run dev -- --host 127.0.0.1
+npm --prefix Frontend run dev
 ```
 
-Frontend:
+Aplicação local:
 
-```text
-http://127.0.0.1:5173
+- Frontend: `http://127.0.0.1:5173`
+- Backend: `http://127.0.0.1:3000`
+
+O frontend usa `http://127.0.0.1:3000` como padrão. Para apontar para outra API, defina `VITE_API_URL` no ambiente do frontend:
+
+```env
+VITE_API_URL="https://seu-backend.example.com"
 ```
 
-Backend:
+## Scripts
 
-```text
-http://127.0.0.1:3000
-```
-
-## Scripts úteis
-
-### Raiz
+Na raiz:
 
 ```bash
 npm run dev:backend
 npm run prisma:generate
 ```
 
-### Frontend
+No frontend:
 
 ```bash
 npm --prefix Frontend run dev
 npm --prefix Frontend run build
 npm --prefix Frontend run preview
+npm --prefix Frontend run lint
 ```
 
 ## API principal
 
-Rotas mais importantes:
+| Método | Endpoint | Descrição |
+| --- | --- | --- |
+| `POST` | `/api/auth/register` | Cria uma conta |
+| `POST` | `/api/auth/login` | Autentica um usuário |
+| `GET` | `/api/users/me` | Retorna o usuário autenticado |
+| `PUT` | `/api/users/me` | Atualiza o perfil |
+| `GET` | `/api/boards` | Lista os boards disponíveis |
+| `POST` | `/api/boards` | Cria um board |
+| `GET` | `/api/boards/:id` | Consulta um board |
+| `PUT` | `/api/boards/:id` | Atualiza um board |
+| `DELETE` | `/api/boards/:id` | Exclui um board |
+| `POST` | `/api/columns/board/:boardId` | Cria uma coluna |
+| `POST` | `/api/tasks/column/:columnId` | Cria uma tarefa |
+| `GET` | `/api/comments/task/:taskId` | Lista comentários |
+| `POST` | `/api/comments/task/:taskId` | Adiciona um comentário |
+| `GET` | `/api/members/board/:boardId` | Lista membros |
 
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `GET /api/users/me`
-- `PUT /api/users/me`
-- `GET /api/boards`
-- `POST /api/boards`
-- `GET /api/boards/:id`
-- `PUT /api/boards/:id`
-- `DELETE /api/boards/:id`
-- `POST /api/columns/board/:boardId`
-- `PUT /api/columns/board/:boardId/reorder`
-- `POST /api/tasks/column/:columnId`
-- `GET /api/comments/task/:taskId`
-- `POST /api/comments/task/:taskId`
-- `GET /api/members/board/:boardId`
+As rotas protegidas exigem o header:
 
-## Deploy
-
-Uma estrutura simples e prática para deploy deste projeto:
-
-### Frontend
-
-- Vercel
-- Netlify
-
-Variável recomendada:
-
-```env
-VITE_API_URL=https://seu-backend.onrender.com
+```http
+Authorization: Bearer <token>
 ```
 
-### Backend
+## Deploy atual
 
-- Render
-- Railway
-- Fly.io
+O projeto é dividido em dois serviços:
 
-Variáveis recomendadas:
+- Frontend: [Worklane na Vercel](https://worklane-one.vercel.app/)
+- Backend: `https://worklane-api.onrender.com`
+- Banco: PostgreSQL hospedado no Render
 
-```env
-DATABASE_URL=postgresql://...
-JWT_SECRET=sua_chave_jwt_forte
-PORT=3000
+### Frontend na Vercel
+
+Configure a pasta raiz como `Frontend` e use:
+
+```text
+Build Command: npm run build
+Output Directory: dist
 ```
 
-### Banco de dados
+Variável de ambiente:
 
-- Neon
-- Supabase Postgres
-- Render Postgres
-- PostgreSQL próprio
+```env
+VITE_API_URL=https://worklane-api.onrender.com
+```
 
-## Estado atual do projeto
+### Backend no Render
 
-Hoje o Worklane já está em um nível sólido para portfólio:
+Use o repositório na branch `main` com:
 
-- fluxo principal funcional de ponta a ponta
-- backend com Prisma e RBAC básico
-- frontend com UX mais refinada
-- persistência real de perfil e configurações
-- board com comportamento próximo de um Kanban moderno
+```text
+Build Command: npm install && npx prisma generate && npx prisma db push
+Start Command: node Backend/src/server.js
+```
 
-## Roadmap sugerido
+Variáveis necessárias:
 
-- testes E2E do fluxo principal
-- activity log por board e tarefa
-- notificações reais
-- upload de avatar
-- labels e tags por tarefa
-- refinamento extra do dark mode em todas as telas
+```env
+DATABASE_URL=<Internal Database URL do PostgreSQL no Render>
+JWT_SECRET=<chave secreta forte>
+```
+
+Nunca versione arquivos `.env` ou publique credenciais no repositório.
+
+## Roadmap
+
+- Testes automatizados do fluxo de autenticação
+- Activity log por board e tarefa
+- Notificações em tempo real
+- Upload de avatar
+- Labels e tags para tarefas
+- Refinamento do dark mode
 
 ## Licença
 
-Este projeto está licenciado sob a [MIT License](./LICENSE).
+Este projeto está sob a licença [MIT](LICENSE).
